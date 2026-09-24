@@ -52,27 +52,44 @@
         <path d="M9 3v15M15 6v15" />
       </symbol>
     </svg>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a
-          class="brand"
-          href="Home.html"
-          aria-label="Khutsong Empowerment Centre home"
-          ><span class="brand-mark">K</span
-          ><span
-            ><strong>Khutsong</strong><small>Empowerment Centre</small></span
-          ></a
-        >
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="Home.html">Home</a><a href="about.html">About Us</a
-          ><a href="#">What We Do</a><a href="#">Campaigns &amp; Events</a
-          ><a href="#">Get Involved</a
-          ><a class="active" href="contacts.html" aria-current="page"
-            >Contact</a
-          >
-        </nav>
-        <a class="help-link" href="GetHelp.html">Get Help</a>
+    <header>
+      <div class="logo">
+        <div class="logo-placeholder">
+          <img
+            src="./images/khutsong-icon-only.png"
+            alt="Khutsong Empowerment Centre"
+          />
+        </div>
+        <div class="logo-text">
+          <h1>Khutsong</h1>
+          <span>Empowerment Centre</span>
+        </div>
       </div>
+
+      <nav aria-label="Main navigation">
+        <ul id="nav-menu">
+          <li><a href="Home.html">Home</a></li>
+          <li><a href="AboutUs.html">About Us</a></li>
+          <li><a href="#">What We Do</a></li>
+          <li><a href="#">Campaigns &amp; Events</a></li>
+          <li><a href="#">Get Involved</a></li>
+          <li>
+            <a href="contacts.html" class="active" aria-current="page"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+      >
+        &#9776;
+      </button>
+      <a href="GetHelp.html" class="btn btn-primary">Get Help</a>
     </header>
     <main>
       <section class="hero">
@@ -132,50 +149,78 @@
               ><svg><use href="#instagram" /></svg></a>
           </div>
           <div class="map-placeholder">
-            <svg><use href="#map" /></svg><strong>[Map Placeholder]</strong
-            ><small>Google Maps embed to be added</small>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.350391479725!2d27.856432038155496!3d-26.219954188919026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95a13ee868a913%3A0x98f773b9af84b743!2s2532%20Andries%20Molaudi%20St%2C%20Dobsonville%2C%20Soweto%2C%201863!5e1!3m2!1sen!2sza!4v1790271335068!5m2!1sen!2sza"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="Khutsong Empowerment Centre location"
+            ></iframe>
           </div>
         </section>
         <section class="form-card" aria-labelledby="message-heading">
           <h2 id="message-heading">Send a Message</h2>
-          <form>
+          <!-- Replace YOUR_FORMSPREE_FORM_ID with the ID from your Formspree form. -->
+          <form
+            id="contact-form"
+            action="https://formspree.io/f/YOUR_FORMSPREE_FORM_ID"
+            method="POST"
+            novalidate
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="New message from the Khutsong Empowerment Centre website"
+            />
             <div class="fields">
               <label class="field"
                 >Full Name *<input
                   name="name"
                   autocomplete="name"
                   placeholder="Your full name"
-                  required /></label
+                  aria-describedby="name-error"
+                  required />
+                <span class="field-error" id="name-error"></span></label
               ><label class="field"
                 >Email Address *<input
                   type="email"
                   name="email"
                   autocomplete="email"
                   placeholder="your@email.com"
-                  required /></label
+                  aria-describedby="email-error"
+                  required />
+                <span class="field-error" id="email-error"></span></label
               ><label class="field"
                 >Phone Number<input
                   type="tel"
                   name="phone"
                   autocomplete="tel"
-                  placeholder="Your phone number" /></label
+                  placeholder="Your phone number"
+                  aria-describedby="phone-error" />
+                <span class="field-error" id="phone-error"></span></label
               ><label class="field"
                 >Subject *<input
                   name="subject"
                   placeholder="How can we help?"
-                  required /></label
+                  aria-describedby="subject-error"
+                  required />
+                <span class="field-error" id="subject-error"></span></label
               ><label class="field full"
                 >Message *<textarea
                   name="message"
                   placeholder="Please write your message here..."
+                  aria-describedby="message-error"
                   required
                 ></textarea>
+                <span class="field-error" id="message-error"></span>
               </label>
             </div>
             <button
               class="send-button"
-              type="button"
-              title="Message delivery will be available when the form is connected"
+              type="submit"
             >
               Send Message
               <svg viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" /></svg>
@@ -258,6 +303,23 @@
         </div>
       </div>
     </footer>
-    <a class="back-top" href="#top" aria-label="Back to top">↑</a>
+    <button
+      class="fab fab-scroll-top"
+      id="scroll-top"
+      aria-label="Scroll to top"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
+    </button>
+    <script src="script.js"></script>
   </body>
 </html>

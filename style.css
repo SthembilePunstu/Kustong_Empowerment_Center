@@ -1546,33 +1546,15 @@ nav a.active {
 }
 
 .contact-page .map-placeholder {
-  min-height: 210px;
   margin-top: 32px;
-  border: 2px dashed #d8d8d8;
   border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #f9f9f9;
-  color: #9a9a9a;
-  text-align: center;
+  overflow: hidden;
 }
 
-.contact-page .map-placeholder svg {
-  width: 27px;
-  height: 27px;
-  margin-bottom: 9px;
-  fill: none;
-  stroke: #b5b5b5;
-  stroke-width: 2;
-}
-
-.contact-page .map-placeholder strong {
-  font-weight: 500;
-}
-.contact-page .map-placeholder small {
-  font-size: 12px;
+.contact-page .map-placeholder iframe {
+  display: block;
+  width: 100%;
+  height: 450px;
 }
 
 .contact-page .form-card {
@@ -1627,6 +1609,23 @@ nav a.active {
 .contact-page .field input::placeholder,
 .contact-page .field textarea::placeholder {
   color: #888e99;
+}
+
+.contact-page .field .input-error {
+  border-color: #c62828;
+}
+
+.contact-page .field .input-error:focus {
+  border-color: #c62828;
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.14);
+}
+
+.contact-page .field-error {
+  min-height: 18px;
+  color: #c62828;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .contact-page .send-button {
@@ -1728,22 +1727,6 @@ nav a.active {
   text-align: center;
 }
 
-.contact-page .back-top {
-  position: fixed;
-  right: 28px;
-  bottom: 28px;
-  z-index: 50;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--orange);
-  color: var(--white);
-  font-size: 26px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
-}
-
 @media (max-width: 1100px) {
   .contact-page .main-nav {
     gap: 14px;
@@ -1838,9 +1821,5 @@ nav a.active {
   }
   .contact-page .footer-list {
     font-size: 12px;
-  }
-  .contact-page .back-top {
-    right: 16px;
-    bottom: 16px;
   }
 }
