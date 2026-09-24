@@ -30,7 +30,7 @@ The goal of this project is to create a professional, accessible and responsive 
 
 ## Project Team
 
-TechXPlo Team 3
+cTechXPlo Team 3
 
 ## Project Timeline
 
