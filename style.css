@@ -2249,3 +2249,19 @@ nav a.active {
     font-size: 12px;
   }
 }
+/* Get Involved: 2-column variant of the existing support grid */
+.support-grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Placeholder box for pending donation details */
+.placeholder-box {
+  background: var(--orange-light);
+  border: 1px dashed var(--orange);
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 14px;
+  color: var(--gray);
+  font-style: italic;
+  margin: 16px 0;
+}
