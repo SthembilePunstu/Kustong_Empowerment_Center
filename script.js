@@ -1,4 +1,4 @@
-// ===== MOBILE NAV TOGGLE =====
+// MOBILE NAV TOGGLE
 
 // Grab the hamburger button (☰) that only shows up on small screens
 const toggle = document.getElementById('menu-toggle');
@@ -17,7 +17,7 @@ if (toggle && menu) {
 }
 
 
-// ===== SCROLL TO TOP BUTTON =====
+//SCROLL TO TOP BUTTON 
 
 // Grab the round orange arrow button fixed at the bottom-right of the page
 const scrollTopBtn = document.getElementById('scroll-top');
@@ -30,7 +30,7 @@ if (scrollTopBtn) {
 }
 
 
-// ===== CONTACT FORM VALIDATION =====
+//CONTACT FORM VALIDATION
 
 const contactForm = document.getElementById('contact-form');
 
