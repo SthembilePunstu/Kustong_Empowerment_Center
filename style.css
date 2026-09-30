@@ -1990,6 +1990,22 @@ nav a.active {
   color: var(--orange-dark);
 }
 
+.what-we-do-page .programmes-cta {
+  padding: 0 24px 80px;
+  text-align: center;
+}
+
+.what-we-do-page .programmes-cta p {
+  margin-bottom: 0;
+  color: #454545;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.what-we-do-page .programmes-cta .learn-more {
+  margin-top: 16px;
+}
+
 .what-we-do-page .footer-col .contact-row a {
   display: inline;
   margin-bottom: 0;
