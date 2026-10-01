@@ -119,3 +119,193 @@ if (contactForm) {
     }
   });
 }
+
+
+//CAMPAIGNS & EVENTS PAGE
+
+const eventsGrid = document.getElementById('events-grid');
+
+if (eventsGrid) {
+  const now = new Date();
+  const cards = Array.from(eventsGrid.querySelectorAll('.event-card'));
+
+  // Mark events whose end date has passed, so they show as "Past" automatically
+  cards.forEach((card) => {
+    const isPast = new Date(card.dataset.end) < now;
+    card.classList.toggle('is-past', isPast);
+    if (isPast) {
+      const tag = document.createElement('span');
+      tag.className = 'event-tag past';
+      tag.textContent = 'Past';
+      card.querySelector('.event-tag').after(tag);
+      // Past events can't be registered for or added to a calendar
+      card.querySelectorAll('[data-register], [data-calendar]').forEach((btn) => btn.remove());
+    }
+  });
+
+  // Upcoming events first (soonest first), then past events (most recent first)
+  cards
+    .sort((a, b) => {
+      const aPast = a.classList.contains('is-past');
+      const bPast = b.classList.contains('is-past');
+      if (aPast !== bPast) return aPast ? 1 : -1;
+      const diff = new Date(a.dataset.start) - new Date(b.dataset.start);
+      return aPast ? -diff : diff;
+    })
+    .forEach((card) => eventsGrid.appendChild(card));
+
+  // FILTER BUTTONS
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const emptyMessage = document.getElementById('events-empty');
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+
+      filterButtons.forEach((b) => {
+        b.classList.toggle('active', b === button);
+        b.setAttribute('aria-selected', String(b === button));
+      });
+
+      let visibleCount = 0;
+      cards.forEach((card) => {
+        const isPast = card.classList.contains('is-past');
+        const visible =
+          filter === 'all' ||
+          (filter === 'upcoming' && !isPast) ||
+          (filter === 'past' && isPast) ||
+          card.dataset.type === filter;
+        card.hidden = !visible;
+        if (visible) visibleCount++;
+      });
+
+      emptyMessage.hidden = visibleCount > 0;
+    });
+  });
+
+  // ADD TO CALENDAR - downloads an .ics file that works with Google, Outlook and Apple calendars
+  const toIcsDate = (date) => date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+
+  eventsGrid.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-calendar]');
+    if (!button) return;
+
+    const card = button.closest('.event-card');
+    const title = card.querySelector('h3').textContent;
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Khutsong Empowerment Centre//Events//EN',
+      'BEGIN:VEVENT',
+      `UID:${toIcsDate(new Date(card.dataset.start))}-${title.replace(/\W+/g, '')}@khutsong`,
+      `DTSTAMP:${toIcsDate(new Date())}`,
+      `DTSTART:${toIcsDate(new Date(card.dataset.start))}`,
+      `DTEND:${toIcsDate(new Date(card.dataset.end))}`,
+      `SUMMARY:${title}`,
+      `DESCRIPTION:${card.querySelector('p').textContent}`,
+      `LOCATION:${card.querySelector('[data-location]').textContent}, Khutsong`,
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    link.download = `${title.replace(/[^\w]+/g, '-')}.ics`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+  });
+}
+
+// FEATURED CAMPAIGN COUNTDOWN
+const countdown = document.getElementById('countdown');
+
+if (countdown) {
+  const target = new Date(countdown.dataset.target);
+  const units = {
+    days: 86400000,
+    hours: 3600000,
+    minutes: 60000,
+    seconds: 1000,
+  };
+
+  const updateCountdown = () => {
+    let remaining = Math.max(0, target - new Date());
+    Object.entries(units).forEach(([unit, ms]) => {
+      countdown.querySelector(`[data-unit="${unit}"]`).textContent = Math.floor(remaining / ms);
+      remaining %= ms;
+    });
+  };
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
+
+// EVENT REGISTRATION MODAL
+const registerModal = document.getElementById('register-modal');
+
+if (registerModal) {
+  const registerForm = document.getElementById('register-form');
+  const registerStep = document.getElementById('register-step');
+  const successStep = document.getElementById('register-success');
+  const errorText = document.getElementById('register-error');
+  let lastTrigger = null;
+
+  const openModal = (eventName) => {
+    document.getElementById('modal-title').textContent = 'Register';
+    document.getElementById('modal-event').textContent = eventName;
+    registerForm.reset();
+    errorText.textContent = '';
+    registerForm.querySelectorAll('input').forEach((input) => input.classList.remove('input-error'));
+    registerStep.hidden = false;
+    successStep.hidden = true;
+    registerModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    registerForm.elements.name.focus();
+  };
+
+  const closeModal = () => {
+    registerModal.hidden = true;
+    document.body.style.overflow = '';
+    if (lastTrigger) lastTrigger.focus();
+  };
+
+  document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-register]');
+    if (trigger) {
+      lastTrigger = trigger;
+      const card = trigger.closest('.event-card');
+      openModal(trigger.dataset.register || card.querySelector('h3').textContent);
+      return;
+    }
+    if (event.target.closest('[data-close]')) closeModal();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !registerModal.hidden) closeModal();
+  });
+
+  registerForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const { name, email, phone, guests } = registerForm.elements;
+    const checks = [
+      [name, name.value.trim().length >= 2, 'Please enter your full name.'],
+      [email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()), 'Please enter a valid email address.'],
+      [phone, !phone.value.trim() || /^\+?[\d\s()-]{7,20}$/.test(phone.value.trim()), 'Please enter a valid phone number.'],
+      [guests, guests.value >= 1 && guests.value <= 20, 'Attendees must be between 1 and 20.'],
+    ];
+
+    checks.forEach(([input, valid]) => input.classList.toggle('input-error', !valid));
+    const failed = checks.find(([, valid]) => !valid);
+
+    if (failed) {
+      errorText.textContent = failed[2];
+      failed[0].focus();
+      return;
+    }
+
+    document.getElementById('success-text').textContent =
+      `Thank you, ${name.value.trim().split(' ')[0]}! Your spot for "${document.getElementById('modal-event').textContent}" is reserved. We'll email ${email.value.trim()} with more details closer to the date.`;
+    registerStep.hidden = true;
+    successStep.hidden = false;
+  });
+}
