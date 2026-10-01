@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campaigns &amp; Events | Khutsong Empowerment Centre</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="./images/khutsong-icon-only.png">
+</head>
+<body class="events-page">
+
+  <header>
+    <div class="logo">
+      <div class="logo-placeholder"><img src="./images/khutsong-icon-only.png" alt=""/></div>
+      <div class="logo-text">
+        <h1>Khutsong</h1>
+        <span>Empowerment Centre</span>
+      </div>
+    </div>
+
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="AboutUs.html">About Us</a></li>
+        <li><a href="WhatWeDo.html">What We Do</a></li>
+        <li><a href="CampaignsEvents.html" class="active" aria-current="page">Campaigns &amp; Events</a></li>
+        <li><a href="GetInvolved.html">Get Involved</a></li>
+        <li><a href="contacts.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Toggle navigation menu">&#9776;</button>
+    <a href="GetHelp.html" class="btn btn-primary">Get Help</a>
+  </header>
+
+  <section class="page-intro">
+    <span class="section-label">Join the Movement</span>
+    <h1>Campaigns &amp; Events</h1>
+    <p>
+      From awareness campaigns to community dialogues and youth workshops, our
+      events bring people together to end gender-based violence and build
+      safer communities. Find an event near you and take part.
+    </p>
+  </section>
+
+  <!-- FEATURED CAMPAIGN -->
+  <section class="featured-campaign">
+    <div class="featured-card">
+      <div class="featured-content">
+        <span class="event-pill">Featured Campaign</span>
+        <h2>16 Days of Activism Against Gender-Based Violence</h2>
+        <p>
+          Every year from 25 November to 10 December, we join the global call
+          to end violence against women and children. Expect marches, school
+          talks, door-to-door awareness and community dialogues across
+          Khutsong and Carletonville.
+        </p>
+        <div class="featured-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            25 Nov &ndash; 10 Dec 2026
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Khutsong &amp; Carletonville
+          </span>
+        </div>
+        <div class="countdown" id="countdown" data-target="2026-11-25T08:00:00+02:00">
+          <div><strong data-unit="days">0</strong><span>Days</span></div>
+          <div><strong data-unit="hours">0</strong><span>Hours</span></div>
+          <div><strong data-unit="minutes">0</strong><span>Minutes</span></div>
+          <div><strong data-unit="seconds">0</strong><span>Seconds</span></div>
+        </div>
+        <div class="hero-buttons">
+          <a href="contacts.html" class="btn btn-white">Join the Campaign &rarr;</a>
+          <a href="GetInvolved.html" class="btn btn-white-outline">Volunteer</a>
+        </div>
+      </div>
+      <div class="featured-image image-placeholder">
+        <img src="./images/Field1.png" alt="Community members at a Khutsong awareness campaign" />
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS LIST -->
+  <section class="events-section" id="events">
+    <div class="support-header">
+      <span class="section-label center">What's On</span>
+      <h2>Upcoming &amp; Past Events</h2>
+      <p>Browse our campaigns and workshops, RSVP through our contact page, or add an event to your calendar.</p>
+    </div>
+
+    <div class="event-filters" role="tablist" aria-label="Filter events">
+      <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+      <button type="button" class="filter-btn" data-filter="upcoming" role="tab" aria-selected="false">Upcoming</button>
+      <button type="button" class="filter-btn" data-filter="campaign" role="tab" aria-selected="false">Campaigns</button>
+      <button type="button" class="filter-btn" data-filter="workshop" role="tab" aria-selected="false">Workshops</button>
+      <button type="button" class="filter-btn" data-filter="past" role="tab" aria-selected="false">Past Events</button>
+    </div>
+
+    <div class="events-grid" id="events-grid">
+
+      <article class="event-card" data-type="campaign" data-start="2026-11-25T08:00:00+02:00" data-end="2026-11-25T13:00:00+02:00">
+        <div class="event-date"><strong>25</strong><span>Nov</span></div>
+        <div class="event-body">
+          <span class="event-tag">Campaign</span>
+          <h3>16 Days Launch March</h3>
+          <p>We open the 16 Days of Activism with a peaceful march through Khutsong, ending with speeches from survivors and local leaders.</p>
+          <ul class="event-meta">
+            <li>08:00 &ndash; 13:00</li>
+            <li data-location>Khutsong Stadium</li>
+          </ul>
+          <div class="event-actions">
+            <a href="contacts.html" class="btn btn-primary btn-sm" data-rsvp>RSVP</a>
+            <button type="button" class="btn btn-outline btn-sm" data-calendar>Add to Calendar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="event-card" data-type="workshop" data-start="2026-10-17T10:00:00+02:00" data-end="2026-10-17T14:00:00+02:00">
+        <div class="event-date"><strong>17</strong><span>Oct</span></div>
+        <div class="event-body">
+          <span class="event-tag">Workshop</span>
+          <h3>Youth Leadership &amp; Healthy Relationships</h3>
+          <p>An interactive workshop for young people aged 15&ndash;25 on consent, respect, and recognising the warning signs of abuse.</p>
+          <ul class="event-meta">
+            <li>10:00 &ndash; 14:00</li>
+            <li data-location>Khutsong Community Hall</li>
+          </ul>
+          <div class="event-actions">
+            <a href="contacts.html" class="btn btn-primary btn-sm" data-rsvp>RSVP</a>
+            <button type="button" class="btn btn-outline btn-sm" data-calendar>Add to Calendar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="event-card" data-type="workshop" data-start="2026-11-07T09:00:00+02:00" data-end="2026-11-07T12:00:00+02:00">
+        <div class="event-date"><strong>07</strong><span>Nov</span></div>
+        <div class="event-body">
+          <span class="event-tag">Workshop</span>
+          <h3>Community Dialogue: Breaking the Silence</h3>
+          <p>A safe space for families, men's groups and community members to talk openly about GBV and how we respond together.</p>
+          <ul class="event-meta">
+            <li>09:00 &ndash; 12:00</li>
+            <li data-location>Carletonville Library</li>
+          </ul>
+          <div class="event-actions">
+            <a href="contacts.html" class="btn btn-primary btn-sm" data-rsvp>RSVP</a>
+            <button type="button" class="btn btn-outline btn-sm" data-calendar>Add to Calendar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="event-card" data-type="campaign" data-start="2026-12-10T10:00:00+02:00" data-end="2026-12-10T15:00:00+02:00">
+        <div class="event-date"><strong>10</strong><span>Dec</span></div>
+        <div class="event-body">
+          <span class="event-tag">Campaign</span>
+          <h3>Human Rights Day Closing Ceremony</h3>
+          <p>We close the 16 Days campaign with a candle-light vigil, performances, and a pledge for a violence-free community.</p>
+          <ul class="event-meta">
+            <li>10:00 &ndash; 15:00</li>
+            <li data-location>Khutsong Community Hall</li>
+          </ul>
+          <div class="event-actions">
+            <a href="contacts.html" class="btn btn-primary btn-sm" data-rsvp>RSVP</a>
+            <button type="button" class="btn btn-outline btn-sm" data-calendar>Add to Calendar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="event-card" data-type="campaign" data-start="2026-08-09T09:00:00+02:00" data-end="2026-08-09T14:00:00+02:00">
+        <div class="event-date"><strong>09</strong><span>Aug</span></div>
+        <div class="event-body">
+          <span class="event-tag">Campaign</span>
+          <h3>Women's Day Walk &amp; Awareness Drive</h3>
+          <p>Over 200 community members walked with us to celebrate women and raise awareness about support services available locally.</p>
+          <ul class="event-meta">
+            <li>09:00 &ndash; 14:00</li>
+            <li data-location>Khutsong Main Road</li>
+          </ul>
+          <div class="event-actions">
+            <a href="#gallery" class="btn btn-outline btn-sm">View Highlights</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="event-card" data-type="workshop" data-start="2026-06-16T10:00:00+02:00" data-end="2026-06-16T15:00:00+02:00">
+        <div class="event-date"><strong>16</strong><span>Jun</span></div>
+        <div class="event-body">
+          <span class="event-tag">Workshop</span>
+          <h3>Youth Day Skills &amp; Safety Expo</h3>
+          <p>Young people joined skills sessions, career talks and safety workshops in partnership with local schools and SAPS.</p>
+          <ul class="event-meta">
+            <li>10:00 &ndash; 15:00</li>
+            <li data-location>Khutsong Stadium</li>
+          </ul>
+          <div class="event-actions">
+            <a href="#gallery" class="btn btn-outline btn-sm">View Highlights</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="events-empty" id="events-empty" hidden>No events match this filter right now. Check back soon!</p>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="gallery-header">
+      <span class="section-label center">Highlights</span>
+      <h2>Moments From Our Events</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item image-placeholder"><img src="./images/Field1.png" alt="Awareness campaign in Khutsong"/></div>
+      <div class="gallery-item image-placeholder"><img src="./images/Field2.png" alt="Community dialogue session"/></div>
+      <div class="gallery-item image-placeholder"><img src="./images/Field3.png" alt="Youth workshop"/></div>
+      <div class="gallery-item image-placeholder"><img src="./images/Field4.png" alt="Community outreach"/></div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <h2>Want to host or partner on an event?</h2>
+    <p>
+      Schools, churches, businesses and community groups can partner with us
+      to bring awareness campaigns and workshops to their spaces.
+    </p>
+    <div class="cta-buttons">
+      <a href="contacts.html" class="btn btn-white">Contact Us &rarr;</a>
+      <a href="GetInvolved.html" class="btn btn-white-outline">Get Involved</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-placeholder"><img src="./images/khutsong-icon-only.png" alt=""/></div>
+          <div class="logo-text">
+            <h1>Khutsong</h1>
+            <span>Empowerment Centre</span>
+          </div>
+        </div>
+        <p>Empowering communities and creating safer futures in South Africa since 2021.</p>
+
+        <div class="social-row">
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="Home.html">Home</a>
+        <a href="AboutUs.html">About Us</a>
+        <a href="WhatWeDo.html">What We Do</a>
+        <a href="GetHelp.html">Get Help</a>
+        <a href="CampaignsEvents.html">Events</a>
+        <a href="GetInvolved.html">Get Involved</a>
+        <a href="contacts.html">Contact</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Our Work</h4>
+        <a href="WhatWeDo.html">GBV Prevention</a>
+        <a href="WhatWeDo.html">Youth Empowerment</a>
+        <a href="WhatWeDo.html">Counselling &amp; Referrals</a>
+        <a href="WhatWeDo.html">Community Outreach</a>
+        <a href="CampaignsEvents.html">Awareness Campaigns</a>
+        <a href="WhatWeDo.html">Stakeholder Collaboration</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.99.36 1.96.68 2.9a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.18-1.18a2 2 0 0 1 2.11-.45c.94.32 1.91.55 2.9.68A2 2 0 0 1 22 16.92z"/></svg>
+          <span>067 402 9098</span>
+          <span>061 305 1594</span>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+          <span>khustongec10@gmail.com</span>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Khutsong, Carletonville, Gauteng, South Africa</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Khutsong Empowerment Centre. All rights reserved. | Registered NPO</p>
+    </div>
+  </footer>
+
+  <button class="fab fab-scroll-top" id="scroll-top" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

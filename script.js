@@ -119,3 +119,124 @@ if (contactForm) {
     }
   });
 }
+
+
+//CAMPAIGNS & EVENTS PAGE
+
+const eventsGrid = document.getElementById('events-grid');
+
+if (eventsGrid) {
+  const now = new Date();
+  const cards = Array.from(eventsGrid.querySelectorAll('.event-card'));
+
+  // Mark events whose end date has passed, so they show as "Past" automatically
+  cards.forEach((card) => {
+    const isPast = new Date(card.dataset.end) < now;
+    card.classList.toggle('is-past', isPast);
+    if (isPast) {
+      const tag = document.createElement('span');
+      tag.className = 'event-tag past';
+      tag.textContent = 'Past';
+      card.querySelector('.event-tag').after(tag);
+      // Past events can't be RSVP'd to or added to a calendar
+      card.querySelectorAll('[data-rsvp], [data-calendar]').forEach((btn) => btn.remove());
+    }
+  });
+
+  // Upcoming events first (soonest first), then past events (most recent first)
+  cards
+    .sort((a, b) => {
+      const aPast = a.classList.contains('is-past');
+      const bPast = b.classList.contains('is-past');
+      if (aPast !== bPast) return aPast ? 1 : -1;
+      const diff = new Date(a.dataset.start) - new Date(b.dataset.start);
+      return aPast ? -diff : diff;
+    })
+    .forEach((card) => eventsGrid.appendChild(card));
+
+  // FILTER BUTTONS
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const emptyMessage = document.getElementById('events-empty');
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+
+      filterButtons.forEach((b) => {
+        b.classList.toggle('active', b === button);
+        b.setAttribute('aria-selected', String(b === button));
+      });
+
+      let visibleCount = 0;
+      cards.forEach((card) => {
+        const isPast = card.classList.contains('is-past');
+        const visible =
+          filter === 'all' ||
+          (filter === 'upcoming' && !isPast) ||
+          (filter === 'past' && isPast) ||
+          card.dataset.type === filter;
+        card.hidden = !visible;
+        if (visible) visibleCount++;
+      });
+
+      emptyMessage.hidden = visibleCount > 0;
+    });
+  });
+
+  // ADD TO CALENDAR - downloads an .ics file that works with Google, Outlook and Apple calendars
+  const toIcsDate = (date) => date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+
+  eventsGrid.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-calendar]');
+    if (!button) return;
+
+    const card = button.closest('.event-card');
+    const title = card.querySelector('h3').textContent;
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Khutsong Empowerment Centre//Events//EN',
+      'BEGIN:VEVENT',
+      `UID:${toIcsDate(new Date(card.dataset.start))}-${title.replace(/\W+/g, '')}@khutsong`,
+      `DTSTAMP:${toIcsDate(new Date())}`,
+      `DTSTART:${toIcsDate(new Date(card.dataset.start))}`,
+      `DTEND:${toIcsDate(new Date(card.dataset.end))}`,
+      `SUMMARY:${title}`,
+      `DESCRIPTION:${card.querySelector('p').textContent}`,
+      `LOCATION:${card.querySelector('[data-location]').textContent}, Khutsong`,
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    link.download = `${title.replace(/[^\w]+/g, '-')}.ics`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+  });
+}
+
+// FEATURED CAMPAIGN COUNTDOWN
+const countdown = document.getElementById('countdown');
+
+if (countdown) {
+  const target = new Date(countdown.dataset.target);
+  const units = {
+    days: 86400000,
+    hours: 3600000,
+    minutes: 60000,
+    seconds: 1000,
+  };
+
+  const updateCountdown = () => {
+    let remaining = Math.max(0, target - new Date());
+    Object.entries(units).forEach(([unit, ms]) => {
+      countdown.querySelector(`[data-unit="${unit}"]`).textContent = Math.floor(remaining / ms);
+      remaining %= ms;
+    });
+  };
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
+
