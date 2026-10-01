@@ -2506,6 +2506,11 @@ nav a.active {
   opacity: 0.8;
 }
 
+/* display:flex above overrides the browser's default [hidden] rule, so restore it for the filters */
+.event-card[hidden] {
+  display: none;
+}
+
 .event-date {
   flex-shrink: 0;
   width: 68px;
@@ -2596,117 +2601,6 @@ nav a.active {
   text-align: center;
   color: var(--gray);
   padding: 40px 0;
-}
-
-/* Registration modal */
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.modal[hidden] {
-  display: none;
-}
-
-.modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.modal-dialog {
-  position: relative;
-  background: #fff;
-  border-radius: 16px;
-  padding: 36px 32px;
-  width: 100%;
-  max-width: 460px;
-  max-height: calc(100vh - 32px);
-  overflow-y: auto;
-}
-
-.modal-close {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 28px;
-  line-height: 1;
-  color: var(--gray);
-  cursor: pointer;
-}
-
-.modal-dialog h3 {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-
-.modal-event {
-  font-size: 14px;
-  color: var(--gray);
-  margin-bottom: 20px;
-}
-
-#register-form label {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 14px;
-}
-
-#register-form input {
-  display: block;
-  width: 100%;
-  margin-top: 6px;
-  padding: 11px 14px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  font-family: "Poppins", sans-serif;
-  font-size: 14px;
-}
-
-#register-form input:focus {
-  outline: none;
-  border-color: var(--orange);
-}
-
-#register-form input.input-error {
-  border-color: #d93025;
-}
-
-.form-error {
-  color: #d93025;
-  font-size: 13px;
-  min-height: 18px;
-  margin-bottom: 10px;
-}
-
-#register-form .btn {
-  width: 100%;
-  justify-content: center;
-}
-
-#register-success {
-  text-align: center;
-}
-
-#register-success p {
-  color: var(--gray);
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 22px;
-}
-
-.success-icon {
-  background: var(--orange-light);
-  margin: 0 auto 16px;
 }
 
 @media (max-width: 900px) {

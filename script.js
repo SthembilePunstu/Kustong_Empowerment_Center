@@ -138,8 +138,8 @@ if (eventsGrid) {
       tag.className = 'event-tag past';
       tag.textContent = 'Past';
       card.querySelector('.event-tag').after(tag);
-      // Past events can't be registered for or added to a calendar
-      card.querySelectorAll('[data-register], [data-calendar]').forEach((btn) => btn.remove());
+      // Past events can't be RSVP'd to or added to a calendar
+      card.querySelectorAll('[data-rsvp], [data-calendar]').forEach((btn) => btn.remove());
     }
   });
 
@@ -240,72 +240,3 @@ if (countdown) {
   setInterval(updateCountdown, 1000);
 }
 
-// EVENT REGISTRATION MODAL
-const registerModal = document.getElementById('register-modal');
-
-if (registerModal) {
-  const registerForm = document.getElementById('register-form');
-  const registerStep = document.getElementById('register-step');
-  const successStep = document.getElementById('register-success');
-  const errorText = document.getElementById('register-error');
-  let lastTrigger = null;
-
-  const openModal = (eventName) => {
-    document.getElementById('modal-title').textContent = 'Register';
-    document.getElementById('modal-event').textContent = eventName;
-    registerForm.reset();
-    errorText.textContent = '';
-    registerForm.querySelectorAll('input').forEach((input) => input.classList.remove('input-error'));
-    registerStep.hidden = false;
-    successStep.hidden = true;
-    registerModal.hidden = false;
-    document.body.style.overflow = 'hidden';
-    registerForm.elements.name.focus();
-  };
-
-  const closeModal = () => {
-    registerModal.hidden = true;
-    document.body.style.overflow = '';
-    if (lastTrigger) lastTrigger.focus();
-  };
-
-  document.addEventListener('click', (event) => {
-    const trigger = event.target.closest('[data-register]');
-    if (trigger) {
-      lastTrigger = trigger;
-      const card = trigger.closest('.event-card');
-      openModal(trigger.dataset.register || card.querySelector('h3').textContent);
-      return;
-    }
-    if (event.target.closest('[data-close]')) closeModal();
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !registerModal.hidden) closeModal();
-  });
-
-  registerForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const { name, email, phone, guests } = registerForm.elements;
-    const checks = [
-      [name, name.value.trim().length >= 2, 'Please enter your full name.'],
-      [email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()), 'Please enter a valid email address.'],
-      [phone, !phone.value.trim() || /^\+?[\d\s()-]{7,20}$/.test(phone.value.trim()), 'Please enter a valid phone number.'],
-      [guests, guests.value >= 1 && guests.value <= 20, 'Attendees must be between 1 and 20.'],
-    ];
-
-    checks.forEach(([input, valid]) => input.classList.toggle('input-error', !valid));
-    const failed = checks.find(([, valid]) => !valid);
-
-    if (failed) {
-      errorText.textContent = failed[2];
-      failed[0].focus();
-      return;
-    }
-
-    document.getElementById('success-text').textContent =
-      `Thank you, ${name.value.trim().split(' ')[0]}! Your spot for "${document.getElementById('modal-event').textContent}" is reserved. We'll email ${email.value.trim()} with more details closer to the date.`;
-    registerStep.hidden = true;
-    successStep.hidden = false;
-  });
-}

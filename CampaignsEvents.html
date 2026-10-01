@@ -72,7 +72,7 @@
           <div><strong data-unit="seconds">0</strong><span>Seconds</span></div>
         </div>
         <div class="hero-buttons">
-          <button type="button" class="btn btn-white" data-register="16 Days of Activism Against GBV">Join the Campaign &rarr;</button>
+          <a href="contacts.html" class="btn btn-white">Join the Campaign &rarr;</a>
           <a href="GetInvolved.html" class="btn btn-white-outline">Volunteer</a>
         </div>
       </div>
@@ -87,7 +87,7 @@
     <div class="support-header">
       <span class="section-label center">What's On</span>
       <h2>Upcoming &amp; Past Events</h2>
-      <p>Filter by type, register for an event, or add it straight to your calendar.</p>
+      <p>Browse our campaigns and workshops, RSVP through our contact page, or add an event to your calendar.</p>
     </div>
 
     <div class="event-filters" role="tablist" aria-label="Filter events">
@@ -111,7 +111,7 @@
             <li data-location>Khutsong Stadium</li>
           </ul>
           <div class="event-actions">
-            <button type="button" class="btn btn-primary btn-sm" data-register>Register</button>
+            <a href="contacts.html" class="btn btn-primary btn-sm" data-rsvp>RSVP</a>
             <button type="button" class="btn btn-outline btn-sm" data-calendar>Add to Calendar</button>
           </div>
         </div>
@@ -128,7 +128,7 @@
             <li data-location>Khutsong Community Hall</li>
           </ul>
           <div class="event-actions">
-            <button type="button" class="btn btn-primary btn-sm" data-register>Register</button>
+            <a href="contacts.html" class="btn btn-primary btn-sm" data-rsvp>RSVP</a>
             <button type="button" class="btn btn-outline btn-sm" data-calendar>Add to Calendar</button>
           </div>
         </div>
@@ -145,7 +145,7 @@
             <li data-location>Carletonville Library</li>
           </ul>
           <div class="event-actions">
-            <button type="button" class="btn btn-primary btn-sm" data-register>Register</button>
+            <a href="contacts.html" class="btn btn-primary btn-sm" data-rsvp>RSVP</a>
             <button type="button" class="btn btn-outline btn-sm" data-calendar>Add to Calendar</button>
           </div>
         </div>
@@ -162,7 +162,7 @@
             <li data-location>Khutsong Community Hall</li>
           </ul>
           <div class="event-actions">
-            <button type="button" class="btn btn-primary btn-sm" data-register>Register</button>
+            <a href="contacts.html" class="btn btn-primary btn-sm" data-rsvp>RSVP</a>
             <button type="button" class="btn btn-outline btn-sm" data-calendar>Add to Calendar</button>
           </div>
         </div>
@@ -294,43 +294,6 @@
       <p>&copy; 2026 Khutsong Empowerment Centre. All rights reserved. | Registered NPO</p>
     </div>
   </footer>
-
-  <!-- REGISTRATION MODAL -->
-  <div class="modal" id="register-modal" hidden>
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button type="button" class="modal-close" data-close aria-label="Close">&times;</button>
-      <div id="register-step">
-        <span class="section-label">Event Registration</span>
-        <h3 id="modal-title">Register</h3>
-        <p class="modal-event" id="modal-event"></p>
-        <form id="register-form" novalidate>
-          <label>Full Name
-            <input type="text" name="name" required minlength="2" />
-          </label>
-          <label>Email Address
-            <input type="email" name="email" required />
-          </label>
-          <label>Phone Number (optional)
-            <input type="tel" name="phone" />
-          </label>
-          <label>Number of Attendees
-            <input type="number" name="guests" min="1" max="20" value="1" required />
-          </label>
-          <p class="form-error" id="register-error" role="alert"></p>
-          <button type="submit" class="btn btn-primary">Confirm Registration</button>
-        </form>
-      </div>
-      <div id="register-success" hidden>
-        <div class="support-icon success-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <h3>You're registered!</h3>
-        <p id="success-text">We'll be in touch with more details closer to the date.</p>
-        <button type="button" class="btn btn-primary" data-close>Done</button>
-      </div>
-    </div>
-  </div>
 
   <button class="fab fab-scroll-top" id="scroll-top" aria-label="Scroll to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
